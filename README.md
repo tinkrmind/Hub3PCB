@@ -21,3 +21,9 @@ Generate the .hex file :
 ```
 > avr-objcopy -O ihex -R .eeprom attiny817-test.elf attiny817-test.hex
 ```
+
+Program :
+```
+> pyupdi -d tiny817 -c COM46 -f attiny817-test.hex                            
+Device info: {'family': 'tinyAVR', 'nvm': 'P:0', 'ocd': 'D:0', 'osc': '3', 'device_id': '1E9320', 'device_rev': '0.1'}  Programming successful                      
+```
