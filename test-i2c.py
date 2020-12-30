@@ -9,7 +9,7 @@ i2caddress = 0x32
 def reset():
     i2cbus.write_byte_data(i2caddress, MAX_REG_SOFTWARE_RESET, RST)
 
-def enable(bool enable):
+def enable(enable):
     i2cbus.write_byte_data(i2caddress, MAX_REG_GLOBAL_ENABLE, ENABLE if enable else 0)
 
 def begin():
