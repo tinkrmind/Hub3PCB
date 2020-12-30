@@ -50,4 +50,7 @@ reset()
 begin()
 enable(1)
 
+while True:
+    print('.')
+
 # print(i2cbus.read_byte_data(i2caddress, MAX98372.MAX_REG_REV_ID))
