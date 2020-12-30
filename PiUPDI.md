@@ -1,10 +1,10 @@
 # PiUPDI
 Testing UPDI programming on AVR chips using RPi
 
-# Resources:
+## Resources:
 * Guide: https://www.omzlo.com/articles/baremetal-programming-on-the-tinyavr-0-micro-controllers
 
-# Results:
+## Results:
 
 Ensure pyupdi is working : 
 ```
