@@ -1,6 +1,9 @@
 import MAX98372
-
+from gpiozero import LED
 from smbus import SMBus
+
+spk_pwr = LED(22)
+spk_con = LED(27)
 
 i2cbus = SMBus(1)
 
@@ -11,11 +14,16 @@ def reset():
 
 def enable(enable):
     i2cbus.write_byte_data(i2caddress, MAX98372.MAX_REG_GLOBAL_ENABLE, MAX98372.ENABLE if enable else 0)
+    if enable:
+        spk_pwr.on()
+        spk_con.on()
+    else:
+        spk_pwr.off()
+        spk_con.off()
 
 def begin():
     # Program the device to the desired mode of operation.
     i2cbus.write_byte_data(i2caddress, MAX98372.MAX_REG_PCM_MODE_CONFIG, MAX98372.CHANSZ_16)
-    i2cbus.write_byte_data(i2caddress, 0x14, 0x40)
 
     i2cbus.write_byte_data(i2caddress, MAX98372.MAX_REG_PCM_SAMPLE_RATE_SETUP, MAX98372.SPK_SR_44_1KHZ)
 
@@ -37,8 +45,9 @@ def begin():
 
     # print(i2cbus.read_byte_data(i2caddress, 0x34))
 
-# reset()
-# begin()
-# enable(1)
+enable(0)
+reset()
+begin()
+enable(1)
 
-print(i2cbus.read_byte_data(i2caddress, MAX98372.MAX_REG_REV_ID))
+# print(i2cbus.read_byte_data(i2caddress, MAX98372.MAX_REG_REV_ID))
