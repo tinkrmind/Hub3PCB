@@ -21,7 +21,7 @@ FLAGS_BUTTON  = 0x01
 # volatile uint8_t 	identifier
 #  	reg 0, READONLY, fixed value 0x47, used for identification
 
- 
+FLAGS = 0x01
 # volatile uint8_t 	flags
 #  	reg 1, READONLY, various flags, see Register Flags
  
