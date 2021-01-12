@@ -16,7 +16,7 @@ def enable(enable):
     i2cbus.write_byte_data(i2caddress, MAX98372.MAX_REG_GLOBAL_ENABLE, MAX98372.ENABLE if enable else 0)
     if enable:
         spk_pwr.on()
-        spk_con.on()
+        spk_con.off()
     else:
         spk_pwr.off()
         spk_con.off()

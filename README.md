@@ -8,7 +8,7 @@ Testing UPDI programming on AVR chips using RPi
 
 Ensure pyupdi is working : 
 ```
-> pyupdi -d tiny817 -c COM46 -i
+> pyupdi -d tiny817 -c /dev/ttyAMA4 -i
 Device info: {'family': 'tinyAVR', 'nvm': 'P:0', 'ocd': 'D:0', 'osc': '3', 'device_id': '1E9320', 'device_rev': '0.1'}
 ```
 
