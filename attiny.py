@@ -18,6 +18,7 @@ FLAGS_CHG  = 0x08
 FLAGS_BUTTON  = 0x01
 # 	State of the POWER BUTTON, 1 = pressed.
 
+ID = 0x00
 # volatile uint8_t 	identifier
 #  	reg 0, READONLY, fixed value 0x47, used for identification
 
