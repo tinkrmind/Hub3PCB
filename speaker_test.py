@@ -5,7 +5,7 @@ from smbus import SMBus
 spk_pwr = LED(22)
 spk_con = LED(27)
 
-i2cbus = SMBus(1)
+i2cbus = SMBus(4)
 
 i2caddress = 0x32
 
