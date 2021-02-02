@@ -11,22 +11,22 @@ def readFlags():
 
 # 1 means answer is True, 0 means False
 def isButtonPressed():
-    return i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_BUTTON) & 0x01
+    return bool(i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_BUTTON) & 0x01)
 
 def isBatteryCharging():
-    return ~ (i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_CHG) & 0x01)
+    return not(i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_CHG) & 0x01)
 
 def isBoostRunning():
-    return ~ (i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_BOOST) & 0x01)
+    return not(i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_BOOST) & 0x01)
 
 def isInputVoltagePresent():
-    return ~ (i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_AOK) & 0x01)
+    return not(i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_AOK) & 0x01)
 
 def isChargeActive():
-    return (i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_CHARGE_OFF) & 0x01)
+    return bool(i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_CHARGE_OFF) & 0x01)
 
 def isBoostActive():
-    return (i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_BOOST_OFF) & 0x01)
+    return bool(i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_BOOST_OFF) & 0x01)
 
 def readTime():
     time = i2cbus.read_i2c_block_data(i2caddress,attiny.UNIX_TIME,attiny.UNIX_TIME_LENGTH) 
