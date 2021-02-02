@@ -26,17 +26,26 @@ FLAGS = 0x01
 # volatile uint8_t 	flags
 #  	reg 1, READONLY, various flags, see Register Flags
 
+UNIX_TIME = 0x02
+UNIX_TIME_LENGTH = 4
 # volatile uint32_t 	unix_time
 #  	reg 2-5, READ/WRITE, UNIX timestamp
 
+ADC_VBATT = 0x06
+ADC_VBATT_LENGTH = 2
 # volatile uint16_t 	adc_vbatt
 #  	reg 6-7, READONLY, battery voltage in mV
 
+ADC_IB = 0x08
+ADC_IB_LENGTH = 2
 # volatile uint16_t 	adc_ib
 #  	reg 8-9, READONLY, battery charge/discharge current in mA
 
+ADC_VIN = 0x0A
+AADC_VIN_LENGTH = 2
 # volatile uint16_t 	adc_vin
 #  	reg 10-11, READONLY, input voltage in mV
 
+FAN_SPEED = 0X0C
 # volatile uint8_t 	fan_speed
 #  	reg 12, READ/WRITE, fan speed setting in %
