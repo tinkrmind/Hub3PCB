@@ -14,7 +14,7 @@ def isButtonPressed():
     return bool(i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_BUTTON) & 0x01)
 
 def isBatteryCharging():
-    return not(i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_CHG) & 0x01)
+    return (i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_CHG) & 0x01)
 
 def isBoostRunning():
     return not(i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_BOOST) & 0x01)
