@@ -44,7 +44,7 @@ IB_MULTIPLIER = 781/64
 #  	reg 8-9, READONLY, battery charge/discharge current in mA
 
 ADC_VIN = 0x0A
-AADC_VIN_LENGTH = 2
+ADC_VIN_LENGTH = 2
 VIN_MULTIPLIER = 521/128
 # volatile uint16_t 	adc_vin
 #  	reg 10-11, READONLY, input voltage in mV
