@@ -1,21 +1,27 @@
 TWI_SLAVE_ADDRESS  = 0x05
 
-FLAGS_BOOST_OFF  = 0x80
+FLAGS_BOOST_OFF  = 7
+#0x80
 # 	State of the BOOST_OFF pin, 1 = boost active.
  
-FLAGS_CHARGE_OFF  = 0x40
+FLAGS_CHARGE_OFF  = 6
+#0x40
 # 	State of the CHARGE_OFF pin, 1 = charge active.
 
-FLAGS_AOK  = 0x20
+FLAGS_AOK  = 5
+#0x20
 # 	State of the AOK input, 0 = input voltage present.
  
-FLAGS_BOOST  = 0x10
+FLAGS_BOOST  = 4
+#0x10
 # 	State of the BOOST input, 0 = boost is running.
  
-FLAGS_CHG  = 0x08
+FLAGS_CHG  = 3
+#0x08
 # 	State of the CHG input, 0 = battry is charging.
  
-FLAGS_BUTTON  = 0x01
+FLAGS_BUTTON  = 0
+#0x01
 # 	State of the POWER BUTTON, 1 = pressed.
 
 ID = 0x00
