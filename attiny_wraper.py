@@ -14,7 +14,7 @@ def isButtonPressed():
     return bool(i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_BUTTON) & 0x01)
 
 def isBatteryCharging():
-    return (i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_CHG) & 0x01)
+    return bool(i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_CHG) & 0x01)
 
 def isBoostRunning():
     return not(i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_BOOST) & 0x01)
@@ -35,11 +35,11 @@ def readTime():
 def writeTime():
     import time
     t = int(time.time())
-    print(t)
     i2cbus.write_byte_data(i2caddress, attiny.UNIX_TIME, t)
     i2cbus.write_byte_data(i2caddress, attiny.UNIX_TIME+1, t>>8)
     i2cbus.write_byte_data(i2caddress, attiny.UNIX_TIME+2, t>>16)
     i2cbus.write_byte_data(i2caddress, attiny.UNIX_TIME+3, t>>24)
+    return t
 
 def readVbat():
     Vbat = i2cbus.read_i2c_block_data(i2caddress,attiny.ADC_VBATT,attiny.ADC_VBATT_LENGTH) 
@@ -60,20 +60,32 @@ def writeFanSpeed(speed):
     #fan speed in %
     try:
         i2cbus.write_byte_data(i2caddress,attiny.FAN_SPEED, speed) 
+        return speed
     except:
         warn("Fan speed probably made, but confirm with a read.")
 
-print(readFlags())
+
+print("Time before setting")
 print(readTime())
-writeTime()
+print("Time set to")
+print(writeTime())
+print("Time after setting")
 print(readTime())
+print("VBat(mV)")
 print(readVbat())
+print("Current draw(mA)")
 print(readIB())
+print("Input voltage(mV)")
 print(readVin())
+print("Fan speed before setting(%)")
 print(readFanSpeed())
+print("Setting fand sped to 50%")
 writeFanSpeed(50)
+print("Fan speed after setting(%)")
 print(readFanSpeed())
 
+print("All flags:")
+print(readFlags())
 print("Is button pressed")
 print(isButtonPressed())
 print("Is battery charging")
