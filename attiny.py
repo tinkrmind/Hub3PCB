@@ -33,16 +33,19 @@ UNIX_TIME_LENGTH = 4
 
 ADC_VBATT = 0x06
 ADC_VBATT_LENGTH = 2
+VBATT_MULTIPLIER = 656/128
 # volatile uint16_t 	adc_vbatt
 #  	reg 6-7, READONLY, battery voltage in mV
 
 ADC_IB = 0x08
 ADC_IB_LENGTH = 2
+IB_MULTIPLIER = 781/64
 # volatile uint16_t 	adc_ib
 #  	reg 8-9, READONLY, battery charge/discharge current in mA
 
 ADC_VIN = 0x0A
 AADC_VIN_LENGTH = 2
+VIN_MULTIPLIER = 521/128
 # volatile uint16_t 	adc_vin
 #  	reg 10-11, READONLY, input voltage in mV
 

@@ -20,5 +20,9 @@ def writeTime():
     i2cbus.write_byte_data(i2caddress, attiny.UNIX_TIME, t>>16)
     i2cbus.write_byte_data(i2caddress, attiny.UNIX_TIME, t>>24)
 
+def readVbat():
+    Vbat = i2cbus.read_i2c_block_data(i2caddress,attiny.ADC_VBATT,attiny.ADC_VBATT_LENGTH) 
+    return (Vbat[0]+(Vbat[1]<<8))*attiny.VBATT_MULTIPLIER
+
 
 print(readFlags())
