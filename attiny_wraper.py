@@ -25,4 +25,8 @@ def readVbat():
     return (Vbat[0]+(Vbat[1]<<8))*attiny.VBATT_MULTIPLIER
 
 
-print(readFlags())
+# print(readFlags())
+print(readTime())
+writeTime()
+print(readTime())
+print(readVbat())
