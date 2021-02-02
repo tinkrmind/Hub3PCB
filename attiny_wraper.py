@@ -1,5 +1,6 @@
 import attiny
 from smbus2 import SMBus
+from warnings import warn
 
 i2cbus = SMBus(1)
 
@@ -7,6 +8,25 @@ i2caddress = attiny.TWI_SLAVE_ADDRESS
 
 def readFlags():
     return i2cbus.read_byte_data(i2caddress, attiny.FLAGS)
+
+# 1 means answer is True, 0 means False
+def isButtonPressed():
+    return i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_BUTTON) & 0x01
+
+def isBatteryCharging():
+    return ~ (i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_CHG) & 0x01)
+
+def isBoostRunning():
+    return ~ (i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_BOOST) & 0x01)
+
+def isInputVoltagePresent():
+    return ~ (i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_AOK) & 0x01)
+
+def isChargeActive():
+    return (i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_CHARGE_OFF) & 0x01)
+
+def isBoostActive():
+    return (i2cbus.read_byte_data(i2caddress, attiny.FLAGS) >> (attiny.FLAGS_BOOST_OFF) & 0x01)
 
 def readTime():
     time = i2cbus.read_i2c_block_data(i2caddress,attiny.UNIX_TIME,attiny.UNIX_TIME_LENGTH) 
@@ -38,7 +58,10 @@ def readFanSpeed():
     
 def writeFanSpeed(speed):
     #fan speed in %
-    i2cbus.write_byte_data(i2caddress,attiny.FAN_SPEED, speed) 
+    try:
+        i2cbus.write_byte_data(i2caddress,attiny.FAN_SPEED, speed) 
+    except:
+        warn("Fan speed probably made, but confirm with a read.")
 
 print(readFlags())
 print(readTime())
@@ -50,3 +73,16 @@ print(readVin())
 print(readFanSpeed())
 writeFanSpeed(50)
 print(readFanSpeed())
+
+print("Is button pressed")
+print(isButtonPressed())
+print("Is battery charging")
+print(isBatteryCharging())
+print("Is Boost running")
+print(isBoostRunning)
+print("Is Input voltage present")
+print(isInputVoltagePresent())
+print("Is Charge Active")
+print(isChargeActive())
+print("Is Boost Active")
+print(isBoostActive())
