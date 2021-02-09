@@ -16,10 +16,10 @@ def enable(enable):
     i2cbus.write_byte_data(i2caddress, MAX98372.MAX_REG_GLOBAL_ENABLE, MAX98372.ENABLE if enable else 0)
     if enable:
         spk_pwr.on()
-        spk_con.off()
+        spk_con.on()
     else:
         spk_pwr.off()
-        spk_con.off()
+        spk_con.on()
 
 def begin():
     # Program the device to the desired mode of operation.
@@ -34,6 +34,9 @@ def begin():
     # Program the speaker output amplifier gain and set SPK_EN (this bit must only be toggled when EN is low).
 
     i2cbus.write_byte_data(i2caddress, MAX98372.MAX_REG_SPEAKER_ENABLE, 1)
+
+    i2cbus.write_byte_data(i2caddress, MAX98372.MAX_REG_PATH_GAIN, 0x00)
+    # also try 0x77
 
     # Program the PVDD and thermal ADC.
 
