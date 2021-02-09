@@ -1,6 +1,6 @@
 import MAX98372
 from gpiozero import LED
-from smbus import SMBus
+from smbus2 import SMBus
 
 spk_pwr = LED(22)
 spk_con = LED(27)
@@ -35,7 +35,7 @@ def begin():
 
     i2cbus.write_byte_data(i2caddress, MAX98372.MAX_REG_SPEAKER_ENABLE, 1)
 
-    i2cbus.write_byte_data(i2caddress, MAX98372.MAX_REG_PATH_GAIN, 0x00)
+    i2cbus.write_byte_data(i2caddress, MAX98372.MAX_REG_PATH_GAIN, 0xAA)
     # also try 0x77
 
     # Program the PVDD and thermal ADC.
@@ -54,6 +54,7 @@ begin()
 enable(1)
 
 while True:
-    print('.')
+    #print('.')
+    continue
 
 # print(i2cbus.read_byte_data(i2caddress, MAX98372.MAX_REG_REV_ID))
